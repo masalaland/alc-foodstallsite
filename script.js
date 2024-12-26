@@ -18,6 +18,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Cart Functionality
+function increaseQuantity(id) {
+    const quantityElement = document.getElementById(id);
+    let quantity = parseInt(quantityElement.innerText);
+    quantityElement.innerText = quantity + 1;
+}
+
+function decreaseQuantity(id) {
+    const quantityElement = document.getElementById(id);
+    let quantity = parseInt(quantityElement.innerText);
+    if (quantity > 1) {
+        quantityElement.innerText = quantity - 1;
+    }
+}
+
 function addToCart(item, price, quantity) {
     // Get cart items from localStorage or initialize an empty array
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -56,7 +70,7 @@ function displayCart() {
         let ul = document.createElement('ul');
         cart.forEach(function(cartItem) {
             let li = document.createElement('li');
-            li.innerHTML = `<h3>${cartItem.quantity} x ${cartItem.item}</h3><p>Price: ${cartItem.price * cartItem.quantity}rs/-</p>`;
+            li.innerHTML = `<h3>${cartItem.item}</h3><p>Quantity: ${cartItem.quantity}</p><p>Total Price: ${cartItem.price * cartItem.quantity}rs/-</p>`;
             ul.appendChild(li);
         });
         cartItemsDiv.appendChild(ul);
