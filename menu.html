@@ -12,17 +12,23 @@
         <li>
             <h3>Pani Puri</h3>
             <p>Price: 30rs/-</p>
-            <button onclick="addToCart('Pani Puri', 30)">Add to Cart</button>
+            <label for="pani-puri-quantity">Quantity:</label>
+            <input type="number" id="pani-puri-quantity" name="quantity" min="1" value="1">
+            <button onclick="addToCart('Pani Puri', 30, document.getElementById('pani-puri-quantity').value)">Add to Cart</button>
         </li>
         <li>
             <h3>Dahi Puri</h3>
             <p>Price: 30rs/-</p>
-            <button onclick="addToCart('Dahi Puri', 30)">Add to Cart</button>
+            <label for="dahi-puri-quantity">Quantity:</label>
+            <input type="number" id="dahi-puri-quantity" name="quantity" min="1" value="1">
+            <button onclick="addToCart('Dahi Puri', 30, document.getElementById('dahi-puri-quantity').value)">Add to Cart</button>
         </li>
         <li>
             <h3>Bajji Mixture</h3>
             <p>Price: 30rs/-</p>
-            <button onclick="addToCart('Bajji Mixture', 30)">Add to Cart</button>
+            <label for "bajji-mixture-quantity">Quantity:</label>
+            <input type="number" id="bajji-mixture-quantity" name="quantity" min="1" value="1">
+            <button onclick="addToCart('Bajji Mixture', 30, document.getElementById('bajji-mixture-quantity').value)">Add to Cart</button>
         </li>
     </ul>
 
