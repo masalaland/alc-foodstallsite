@@ -1,0 +1,36 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Masala Land</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h2>Our Menu</h2>
+    <ul>
+    <li>
+        <h3>Pani Puri</h3>
+        <p>Price: 30rs/-</p>
+        <button onclick="addToCart('Pani Puri', 30)">Add to Cart</button>
+    </li>
+    <li>
+        <h3>Dahi Puri</h3>
+        <p>Price: 30rs/-</p>
+        <button onclick="addToCart('Dahi Puri', 30)">Add to Cart</button>
+    </li>
+    <li>
+        <h3>Bajji Mixture</h3>
+        <p>Price: 30rs/-</p>
+        <button onclick="addToCart('Bajji Mixture', 30)">Add to Cart</button>
+    </li>
+</ul>
+
+<!-- Pop-up Window -->
+<div id="popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 20px; border: 1px solid #000; z-index: 1000;">
+    <p id="Item Added to Cart"></p>
+    <button onclick="closePopup()">Close</button>
+</div>
+</body>
+</html>
