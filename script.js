@@ -60,3 +60,49 @@ document.addEventListener('DOMContentLoaded', () => {
         qrCodeImg.src = 'path/to/your/qr-code.png'; // Replace with actual QR code path
     }
 });
+function addToCart(item, price) {
+    // Get cart items from localStorage or initialize an empty array
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Add new item to the cart
+    cart.push({ item: item, price: price });
+
+    // Save cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Show pop-up window
+    document.getElementById('popup-message').innerText = item + " added to cart!";
+    document.getElementById('popup').style.display = 'block';
+
+    // Automatically close the pop-up after a few seconds (optional)
+    setTimeout(closePopup, 2000);
+}
+
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+}
+
+function displayCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cartItemsDiv = document.getElementById('cart-items');
+
+    // Clear the cart items div
+    cartItemsDiv.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartItemsDiv.innerHTML = '<p>Your cart is empty.</p>';
+    } else {
+        let ul = document.createElement('ul');
+        cart.forEach(function(cartItem) {
+            let li = document.createElement('li');
+            li.innerHTML = `<h3>${cartItem.item}</h3><p>Price: ${cartItem.price}rs/-</p>`;
+            ul.appendChild(li);
+        });
+        cartItemsDiv.appendChild(ul);
+    }
+}
+
+function checkout() {
+    // Logic for checkout (not implemented in this example)
+    alert('Proceeding to checkout...');
+}
