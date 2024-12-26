@@ -33,17 +33,11 @@ function decreaseQuantity(id) {
 }
 
 function addToCart(item, price, quantity) {
-    // Get cart items from localStorage or initialize an empty array
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Check if item already exists in the cart
-    let existingItem = cart.find(cartItem => cartItem.item === item);
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        // Add new item to the cart
-        cart.push({ item, price, quantity });
-    }
+    // Clear cart when a new item is added
+    let cart = [];
+    
+    // Add new item to the cart
+    cart.push({ item, price, quantity });
 
     // Save cart back to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
