@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -5,33 +6,6 @@
     <title>Menu - Masala Land</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-
-        .content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-    </style>
 </head>
 <body>
     <!-- Background Video -->
@@ -39,98 +13,35 @@
         <source src="Untitled design.mp4" type="video/mp4">
     </video>
 
-    <div class="content">
-        <h2>Our Menu</h2>
-        <!-- Cart Symbol -->
-        <div style="position: fixed; top: 20px; right: 20px;">
-            <img src="shopping-cart-icon-29078.jpg" alt="Cart" style="width: 40px; cursor: pointer;" onclick="redirectToCart()">
+    <div class="dropdown-container">
+        <div class="dropdown-panel">
+            <label for="menu-dropdown">Choose an item:</label>
+            <select id="menu-dropdown" name="menu-dropdown" onchange="updateDetails()">
+                <option value="Pani Puri">Pani Puri</option>
+                <option value="Dahi Puri">Dahi Puri</option>
+                <option value="Bajji Mixture">Bajji Mixture</option>
+                <option value="Batani Chaat">Batani Chaat</option>
+                <option value="Fried Chicken">Fried Chicken</option>
+                <option value="French Fries">French Fries</option>
+            </select>
+            <div id="menu-details">
+                <h3 id="item-name">Pani Puri</h3>
+                <p id="item-price">Price: 30rs/-</p>
+                <div class="quantity">
+                    <label>Quantity:</label>
+                    <button onclick="decreaseQuantity('quantity')">-</button>
+                    <span id="quantity">1</span>
+                    <button onclick="increaseQuantity('quantity')">+</button>
+                </div>
+                <button onclick="addToCart('Pani Puri', 30, parseInt(document.getElementById('quantity').innerText))">Add to Cart</button>
+            </div>
         </div>
-        <ul>
-            <li>
-                <h3>Pani Puri</h3>
-                <p>Price: 30rs/-</p>
-                <div>
-                    <label>Quantity:</label>
-                    <div>
-                        <button onclick="decreaseQuantity('pani-puri-quantity')">-</button>
-                        <span id="pani-puri-quantity">1</span>
-                        <button onclick="increaseQuantity('pani-puri-quantity')">+</button>
-                    </div>
-                </div>
-                <button onclick="addToCart('Pani Puri', 30, parseInt(document.getElementById('pani-puri-quantity').innerText))">Add to Cart</button>
-            </li>
-            <li>
-                <h3>Dahi Puri</h3>
-                <p>Price: 30rs/-</p>
-                <div>
-                    <label>Quantity:</label>
-                    <div>
-                        <button onclick="decreaseQuantity('dahi-puri-quantity')">-</button>
-                        <span id="dahi-puri-quantity">1</span>
-                        <button onclick="increaseQuantity('dahi-puri-quantity')">+</button>
-                    </div>
-                </div>
-                <button onclick="addToCart('Dahi Puri', 30, parseInt(document.getElementById('dahi-puri-quantity').innerText))">Add to Cart</button>
-            </li>
-            <li>
-                <h3>Bajji Mixture</h3>
-                <p>Price: 30rs/-</p>
-                <div>
-                    <label>Quantity:</label>
-                    <div>
-                        <button onclick="decreaseQuantity('bajji-mixture-quantity')">-</button>
-                        <span id="bajji-mixture-quantity">1</span>
-                        <button onclick="increaseQuantity('bajji-mixture-quantity')">+</button>
-                    </div>
-                </div>
-                <button onclick="addToCart('Bajji Mixture', 30, parseInt(document.getElementById('bajji-mixture-quantity').innerText))">Add to Cart</button>
-            </li>
-            <li>
-                <h3>Batani Chaat</h3>
-                <p>Price: 30rs/-</p>
-                <div>
-                    <label>Quantity:</label>
-                    <div>
-                        <button onclick="decreaseQuantity('batani-chaat-quantity')">-</button>
-                        <span id="batani-chaat-quantity">1</span>
-                        <button onclick="increaseQuantity('batani-chaat-quantity')">+</button>
-                    </div>
-                </div>
-                <button onclick="addToCart('Batani Chaat', 30, parseInt(document.getElementById('batani-chaat-quantity').innerText))">Add to Cart</button>
-            </li>
-            <li>
-                <h3>Fried Chicken</h3>
-                <p>Price: 99rs/-</p>
-                <div>
-                    <label>Quantity:</label>
-                    <div>
-                        <button onclick="decreaseQuantity('fried-chicken-quantity')">-</button>
-                        <span id="fried-chicken-quantity">1</span>
-                        <button onclick="increaseQuantity('fried-chicken-quantity')">+</button>
-                    </div>
-                </div>
-                <button onclick="addToCart('Fried Chicken', 99, parseInt(document.getElementById('fried-chicken-quantity').innerText))">Add to Cart</button>
-            </li>
-            <li>
-                <h3>French Fries</h3>
-                <p>Price: 40rs/-</p>
-                <div>
-                    <label>Quantity:</label>
-                    <div>
-                        <button onclick="decreaseQuantity('french-fries-quantity')">-</button>
-                        <span id="french-fries-quantity">1</span>
-                        <button onclick="increaseQuantity('french-fries-quantity')">+</button>
-                    </div>
-                </div>
-                <button onclick="addToCart('French Fries', 40, parseInt(document.getElementById('french-fries-quantity').innerText))">Add to Cart</button>
-            </li>
-        </ul>
+    </div>
 
-        <!-- Pop-up Window -->
-        <div id="popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 20px; border: 1px solid #000; z-index: 1000;">
-            <p id="popup-message"></p>
-            <button onclick="closePopup()">Close</button>
-        </div>
+    <!-- Pop-up -->
+    <div id="popup" class="popup">
+        <p id="popup-message"></p>
+        <button onclick="closePopup()">Close</button>
     </div>
 </body>
 </html>
