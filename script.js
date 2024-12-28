@@ -1,6 +1,23 @@
+// Login Functionality
 document.addEventListener('DOMContentLoaded', () => {
-    // Initial price mapping for items
-    const itemPrices = {
+    const loginForm = document.getElementById('loginForm');
+
+    // Handle login form submission
+    loginForm?.addEventListener('submit', event => {
+        event.preventDefault();
+        const rollNumber = document.getElementById('roll-number').value.trim();
+
+        if (rollNumber) {
+            alert(`Welcome, Roll Number: ${rollNumber}`);
+            // Redirect to the menu page
+            window.location.href = "menu.html";
+        } else {
+            alert('Please enter a valid roll number.');
+        }
+    });
+
+    // Menu Page Functionality
+    const menuItems = {
         "Pani Puri": 30,
         "Dahi Puri": 30,
         "Bajji Mixture": 30,
@@ -13,38 +30,86 @@ document.addEventListener('DOMContentLoaded', () => {
     const priceDisplay = document.getElementById('price');
     const quantityDisplay = document.getElementById('item-quantity');
 
-    // Update price based on selected item
-    window.updatePrice = function () {
-        const selectedItem = dropdown.value;
-        const price = itemPrices[selectedItem];
-        const quantity = parseInt(quantityDisplay.innerText);
-        priceDisplay.innerText = `Price: ${price * quantity}rs`;
-    };
+    if (dropdown && priceDisplay && quantityDisplay) {
+        // Update price based on selected item
+        window.updatePrice = function () {
+            const selectedItem = dropdown.value;
+            const price = menuItems[selectedItem];
+            const quantity = parseInt(quantityDisplay.innerText);
+            priceDisplay.innerText = `Price: ${price * quantity}rs`;
+        };
 
-    // Increase quantity and update price
-    window.increaseQuantity = function (id) {
-        const quantityElement = document.getElementById(id);
-        let quantity = parseInt(quantityElement.innerText);
-        quantityElement.innerText = quantity + 1;
-        updatePrice();
-    };
-
-    // Decrease quantity and update price
-    window.decreaseQuantity = function (id) {
-        const quantityElement = document.getElementById(id);
-        let quantity = parseInt(quantityElement.innerText);
-        if (quantity > 1) {
-            quantityElement.innerText = quantity - 1;
+        // Increase quantity and update price
+        window.increaseQuantity = function (id) {
+            const quantityElement = document.getElementById(id);
+            let quantity = parseInt(quantityElement.innerText);
+            quantityElement.innerText = quantity + 1;
             updatePrice();
+        };
+
+        // Decrease quantity and update price
+        window.decreaseQuantity = function (id) {
+            const quantityElement = document.getElementById(id);
+            let quantity = parseInt(quantityElement.innerText);
+            if (quantity > 1) {
+                quantityElement.innerText = quantity - 1;
+                updatePrice();
+            }
+        };
+
+        // Add item to cart
+        window.addItemToCart = function () {
+            const selectedItem = dropdown.value;
+            const price = menuItems[selectedItem];
+            const quantity = parseInt(quantityDisplay.innerText);
+
+            for (let i = 0; i < quantity; i++) {
+                addToCart(selectedItem, price);
+            }
+        };
+    }
+
+    // Cart Functionality
+    const cart = [];
+
+    function addToCart(item, price) {
+        cart.push({ item, price });
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItems = document.getElementById('cart-items');
+        if (cartItems) {
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty.</p>';
+                return;
+            }
+            cartItems.innerHTML = cart
+                .map(
+                    (cartItem, index) => `
+                        <div class="cart-item">
+                            <span>${cartItem.item} - Rs. ${cartItem.price}</span>
+                            <button onclick="removeFromCart(${index})">Remove</button>
+                        </div>
+                    `
+                )
+                .join('');
         }
-    };
+    }
 
-    // Add item to cart
-    window.addItemToCart = function () {
-        const selectedItem = dropdown.value;
-        const price = itemPrices[selectedItem];
-        const quantity = parseInt(quantityDisplay.innerText);
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+    }
 
-        addToCart(selectedItem, price, quantity);
-    };
+    function checkout() {
+        alert('Proceeding to checkout!');
+        // Additional checkout logic here
+    }
+
+    // QR Code Handling
+    const qrCodeImg = document.getElementById('qr-code-img');
+    if (qrCodeImg) {
+        qrCodeImg.src = 'path/to/your/qr-code.png'; // Replace with actual QR code path
+    }
 });
