@@ -55,19 +55,26 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Update price display based on selected menu item and quantity
      */
-    window.updatePrice=function () {
-    const selectedItem = document.getElementById('menu-items').value;
-    const priceString = selectedItem.split(' - ')[1]; 
-    const price = parseInt(priceString.replace('rs', '')); 
-    const quantity = parseInt(document.getElementById('item-quantity').textContent);
-    const totalPrice = price * quantity;
+    window.updatePrice = function () {
+        const dropdown = document.getElementById('menu-items');
+        const priceDisplay = document.getElementById('price');
+        const quantityDisplay = document.getElementById('item-quantity');
+        const quantityHiddenInput = document.getElementById('item_quantity_hidden'); 
 
-    document.getElementById('price').textContent = `Price: ${totalPrice}rs`; 
+        if (dropdown && priceDisplay && quantityDisplay && quantityHiddenInput) {
+            const selectedItem = dropdown.value;
+            const price = menuItems[selectedItem];
+            const quantity = parseInt(quantityDisplay.innerText, 10);
 
-    // Update hidden input fields
-    document.getElementById('item_name').value = selectedItem;
-    document.getElementById('item_quantity_hidden').value = quantity; 
-}
+            priceDisplay.innerText = `Price: ${price * quantity}rs`; 
+
+            // Update hidden input fields
+            document.getElementById('item_name').value = selectedItem;
+            quantityHiddenInput.value = quantity; // Update the hidden input with the current quantity
+        } else {
+            console.error("Dropdown, price display, or quantity display not found.");
+        }
+    };
 
 // ... rest of your JavaScript functions (increaseQuantity, decreaseQuantity) ...
     /**
