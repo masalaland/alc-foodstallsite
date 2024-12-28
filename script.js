@@ -1,29 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Login Functionality
-    const loginForm = document.getElementById('loginForm');
+    const loginForm = document.querySelector('form'); // Select the form element
 
     if (loginForm) {
         loginForm.addEventListener('submit', (event) => {
             event.preventDefault();
 
-            const rollNumberInput = document.getElementById('roll-number');
+            const rollNumberInput = document.getElementById('txt-input'); // Correct ID
             const rollNumber = rollNumberInput ? rollNumberInput.value.trim() : null;
 
-            // Debugging output
+            // Debugging output (optional)
             console.log('Form submission detected');
             console.log('Roll Number:', rollNumber);
 
             if (rollNumber) {
-                alert(`Welcome, Roll Number: ${rollNumber}`);
-                console.log('Redirecting to home.html');
-                window.location.href = "home.html"; // Redirect to home.html
+                // Basic validation (you can add more robust validation here)
+                if (isValidRollNumber(rollNumber)) {
+                    alert(`Welcome, Roll Number: ${rollNumber}`);
+                    console.log('Redirecting to home.html');
+                    window.location.href = "home.html"; // Redirect
+                } else {
+                    alert('Please enter a valid roll number.');
+                }
             } else {
-                alert('Please enter a valid roll number.');
+                alert('Please enter your roll number.');
             }
         });
     } else {
         console.error('Login form not found in the DOM.');
     }
+});
+
+// Basic roll number validation function (customize as needed)
+function isValidRollNumber(rollNumber) {
+    // Example: Check if it's not empty and contains only alphanumeric characters
+    return rollNumber !== "" && /^[a-zA-Z0-9]+$/.test(rollNumber);
+}
 
     /**
      * Menu Items and Pricing
