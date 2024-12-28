@@ -65,3 +65,35 @@
     <script src="script.js" defer></script> 
 </body>
 </html>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+   
+
+    const cart = []; 
+
+   
+
+    window.updatePrice = function () {
+        const dropdown = document.getElementById('menu-items');
+        const priceDisplay = document.getElementById('price');
+        const quantityDisplay = document.getElementById('item-quantity');
+        const quantityHiddenInput = document.getElementById('item_quantity_hidden'); 
+
+        if (dropdown && priceDisplay && quantityDisplay && quantityHiddenInput) {
+            const selectedItem = dropdown.value;
+            const price = menuItems[selectedItem];
+            const quantity = parseInt(quantityDisplay.innerText, 10);
+
+            priceDisplay.innerText = `Price: ${price * quantity}rs`; 
+
+            document.getElementById('item_name').value = selectedItem;
+            quantityHiddenInput.value = quantity; 
+        } else {
+            console.error("Dropdown, price display, or quantity display not found.");
+        }
+    };
+
+   
+});
+</script>
