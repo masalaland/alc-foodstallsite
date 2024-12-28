@@ -1,65 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu - Masala Land</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
-    <style>
-        /* Panel Styling */
-        .menu-panel {
-            width: 400px;
-            margin: 50px auto;
-            background: linear-gradient(to bottom, #e0f7e9, #c8eac4);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Masala Land</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <style>
+    /* Panel Styling */
+    .menu-panel {
+      width: 300px; /* Adjust width for portrait frame */
+      margin: 30px auto; /* Adjust margins for portrait frame */
+      background: linear-gradient(to bottom, #bfffff, #87ceeb); /* Vibrant sky blue gradient */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
 
-        /* ... rest of your CSS styles ... */
-    </style>
+    /* Text Styling */
+    .menu-panel h2 {
+      font-size: 2.5em; /* Bigger font size */
+      font-weight: bold; /* Bold text */
+      color: linear-gradient(to right, black, #222); /* Gradient black text */
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Text shadow */
+    }
+
+    .menu-panel label,
+    .menu-panel select,
+    .menu-panel input[type="number"],
+    .menu-panel .price-display,
+    .menu-panel input[type="submit"] {
+      font-size: 1.2em; /* Larger font size for other elements */
+      font-weight: bold; /* Bold text */
+    }
+  </style>
 </head>
 <body>
 
-    <video autoplay muted loop class="video-background">
-        <source src="Untitled design.mp4" type="video/mp4">
-    </video>
+  <video autoplay muted loop class="video-background">
+    <source src="Untitled design.mp4" type="video/mp4">
+  </video>
 
-    <div class="content">
-        <div style="position: fixed; top: 20px; right: 20px;">
-            <img src="shopping-cart-icon-29078.jpg" alt="Cart" style="width: 40px; cursor: pointer;" onclick="redirectToCart()">
-        </div>
-
-        <div class="menu-panel">
-            <h2>Our Menu</h2>
-
-            <form action="https://formcarry.com/s/LbSRGhv-KFr" method="POST">
-                <label for="menu-items">Select Item:</label>
-                <select id="menu-items" name="item" onchange="updatePrice()" required>
-                    <option value="Pani Puri" selected>Pani Puri - 30rs</option>
-                    <option value="Dahi Puri">Dahi Puri - 30rs</option>
-                    <option value="Bajji Mixture">Bajji Mixture - 30rs</option>
-                    <option value="Batani Chaat">Batani Chaat - 30rs</option>
-                    <option value="Fried Chicken">Fried Chicken - 99rs</option>
-                    <option value="French Fries">French Fries - 40rs</option>
-                </select>
-
-                <div class="quantity-controls">
-                    <label for="item-quantity">Quantity:</label>
-                    <input type="number" id="item-quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
-                </div>
-
-                <div id="price" class="price-display"></div>
-
-                <input type="hidden" name="item_name" id="item_name">
-
-                <input type="submit" value="Add to Cart">
-            </form>
-        </div>
+  <div class="content">
+    <div style="position: fixed; top: 20px; right: 20px;">
+      <img src="shopping-cart-icon-29078.jpg" alt="Cart" style="width: 40px; cursor: pointer;" onclick="redirectToCart()">
     </div>
 
-    <script src="script.js" defer></script>
+    <div class="menu-panel">
+      <h2>Our Menu</h2>
+
+      <form action="https://formcarry.com/s/LbSRGhv-KFr" method="POST">
+        <label for="menu-items">Select Item:</label>
+        <select id="menu-items" name="item" onchange="updatePrice()" required>
+          <option value="Pani Puri" selected>Pani Puri - 30rs</option>
+          <option value="Dahi Puri">Dahi Puri - 30rs</option>
+          <option value="Bajji Mixture">Bajji Mixture - 30rs</option>
+          <option value="Batani Chaat">Batani Chaat - 30rs</option>
+          <option value="Fried Chicken">Fried Chicken - 99rs</option>
+          <option value="French Fries">French Fries - 40rs</option>
+        </select>
+
+        <div class="quantity-controls">
+          <label for="item-quantity">Quantity:</label>
+          <input type="number" id="item-quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
+        </div>
+
+        <div id="price" class="price-display"></div>
+
+        <input type="hidden" name="item_name" id="item_name">
+
+        <input type="submit" value="Add to Cart">
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
