@@ -1,23 +1,172 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masala Land - Login</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel|Playfair+Display|Vibur|Lora">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+            background-repeat: no-repeat;
+            font-family: 'Abel', sans-serif;
+            opacity: 0.95;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-placeholder {
+            width: 75px;
+            height: 60px;
+            margin-bottom: 10px; 
+             background-image: url("INDIAN FOOD.jpg"); 
+             background-size: contain; 
+            background-repeat: no-repeat; 
+            background-position: center; 
+            border: 1px dashed #ccc; 
+        }
+
+        .site-title {
+            font-family: 'Lora', serif;
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        form {
+            max-width: 90%;
+            width: 450px;
+            min-height: 300px;
+            border-radius: 5px;
+            box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+            padding: 2%;
+            background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
+        }
+
+        .con {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 0 auto;
+        }
+
+        header {
+            margin: 2% auto 10% auto;
+            text-align: center;
+        }
+
+        header h2 {
+            font-size: 250%;
+            font-family: 'Playfair Display', serif;
+            color: #3e403f;
+        }
+
+        .input-item {
+            background: #fff;
+            color: #333;
+            padding: 14.5px 0px 15px 9px;
+            border-radius: 5px 0px 0px 5px;
+        }
+
+        input[class="form-input"] {
+            width: calc(100% - 40px);
+            height: 50px;
+            margin-top: 2%;
+            padding: 15px;
+            font-size: 16px;
+            font-family: 'Abel', sans-serif;
+            color: #5E6472;
+            outline: none;
+            border: none;
+            border-radius: 0px 5px 5px 0px;
+            transition: 0.2s linear;
+        }
+
+        input:focus {
+            transform: translateX(-2px);
+            border-radius: 5px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            color: #252537;
+            height: 50px;
+            padding: 0 20px;
+            background: #fff;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s linear;
+            margin: 7% auto;
+            letter-spacing: 0.05em;
+        }
+
+        button:hover {
+            transform: translateY(3px);
+            box-shadow: none;
+            animation: ani9 0.4s ease-in-out infinite alternate;
+        }
+
+        @keyframes ani9 {
+            0% {
+                transform: translateY(3px);
+            }
+            100% {
+                transform: translateY(5px);
+            }
+        }
+
+        @media (max-width: 500px) {
+            form {
+                padding: 5%;
+            }
+                        input[class="form-input"] {
+              width: calc(100% - 30px);
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Login Portal -->
-    <section id="login">
-        <div id="login-form">
-            <h2>Login to Masala Land</h2>
-            <form id="loginForm">
-                <label for="roll-number">Roll Number:</label>
-                <input type="text" id="roll-number" name="roll-number" required placeholder="Enter your roll number">
-                <button type="submit">Login</button>
+    <div class="login-container">
+        <div class="logo-placeholder"></div>
+        <h1 class="site-title">Masala Land</h1>
+        <div class="overlay">
+            <form>
+                <div class="con">
+                    <header class="head-form">
+                        <h2>Log In</h2>
+                        <p>Login here using your Register Number</p>
+                    </header>
+                    <div class="field-set">
+                        <span class="input-item">
+                            <i class="fa fa-user-circle"></i>
+                        </span>
+                        <input class="form-input" id="txt-input" type="text" placeholder="@Roll Number" required>
+                        <br><br>
+                        <button class="log-in">Log In</button>
+                    </div>
+                </div>
             </form>
         </div>
-    </section>
+    </div>
 </body>
 </html>
