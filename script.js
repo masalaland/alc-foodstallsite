@@ -55,19 +55,21 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Update price display based on selected menu item and quantity
      */
-    window.updatePrice = function () {
-        const dropdown = document.getElementById('menu-items');
-        const priceDisplay = document.getElementById('price');
-        const quantityDisplay = document.getElementById('item-quantity');
+    window.updatePrice=function () {
+    const selectedItem = document.getElementById('menu-items').value;
+    const priceString = selectedItem.split(' - ')[1]; 
+    const price = parseInt(priceString.replace('rs', '')); 
+    const quantity = parseInt(document.getElementById('item-quantity').textContent);
+    const totalPrice = price * quantity;
 
-        if (dropdown && priceDisplay && quantityDisplay) {
-            const selectedItem = dropdown.value;
-            const price = menuItems[selectedItem];
-            const quantity = parseInt(quantityDisplay.innerText, 10);
-            priceDisplay.innerText = `Price: ${price * quantity}rs`;
-        }
-    };
+    document.getElementById('price').textContent = `Price: ${totalPrice}rs`; 
 
+    // Update hidden input fields
+    document.getElementById('item_name').value = selectedItem;
+    document.getElementById('item_quantity_hidden').value = quantity; 
+}
+
+// ... rest of your JavaScript functions (increaseQuantity, decreaseQuantity) ...
     /**
      * Increase quantity
      */
