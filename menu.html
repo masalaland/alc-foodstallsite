@@ -35,10 +35,10 @@
         <div class="menu-panel">
             <h2>Our Menu</h2>
 
-            <form action="https://formcarry.com/s/LbSRGhv-KFr" method="POST"> 
+            <form action="https://formcarry.com/s/LbSRGhv-KFr" method="POST">
                 <label for="menu-items">Select Item:</label>
-                <select id="menu-items" name="item" onchange="updatePrice()" required> 
-                    <option value="Pani Puri" selected>Pani Puri - 30rs</option> 
+                <select id="menu-items" name="item" onchange="updatePrice()" required>
+                    <option value="Pani Puri" selected>Pani Puri - 30rs</option>
                     <option value="Dahi Puri">Dahi Puri - 30rs</option>
                     <option value="Bajji Mixture">Bajji Mixture - 30rs</option>
                     <option value="Batani Chaat">Batani Chaat - 30rs</option>
@@ -47,50 +47,19 @@
                 </select>
 
                 <div class="quantity-controls">
-                    <button onclick="decreaseQuantity('item-quantity')">-</button>
-                    <span id="item-quantity" class="quantity-display">1</span>
-                    <button onclick="increaseQuantity('item-quantity')">+</button>
+                    <label for="item-quantity">Quantity:</label>
+                    <input type="number" id="item-quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
                 </div>
 
-                <div id="price" class="price-display"></div> 
+                <div id="price" class="price-display"></div>
 
-                <input type="hidden" name="item_name" id="item_name"> 
-                <input type="hidden" name="quantity" id="item_quantity_hidden"> 
+                <input type="hidden" name="item_name" id="item_name">
 
-                <input type="submit" value="Add to Cart"> 
-            </form> 
+                <input type="submit" value="Add to Cart">
+            </form>
         </div>
     </div>
 
-    <script src="script.js" defer></script> 
+    <script src="script.js" defer></script>
 </body>
 </html>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
- 
-
-    window.updatePrice = function () {
-        const dropdown = document.getElementById('menu-items');
-        const priceDisplay = document.getElementById('price');
-        const quantityDisplay = document.getElementById('item-quantity');
-        const quantityHiddenInput = document.getElementById('item_quantity_hidden'); 
-
-        if (dropdown && priceDisplay && quantityDisplay && quantityHiddenInput) {
-            const selectedItem = dropdown.value;
-            const price = menuItems[selectedItem];
-            const quantity = parseInt(quantityDisplay.innerText, 10);
-
-            priceDisplay.innerText = `Price: ${price * quantity}rs`; 
-
-            // Update hidden input fields
-            document.getElementById('item_name').value = selectedItem;
-            quantityHiddenInput.value = quantity; 
-        } else {
-            console.error("Dropdown, price display, or quantity display not found.");
-        }
-    };
-
-   
-});
-</script>
