@@ -6,6 +6,61 @@
     <title>Menu - Masala Land</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+    <style>
+        /* Panel Styling */
+        .menu-panel {
+            width: 400px;
+            margin: 50px auto;
+            background: linear-gradient(to bottom, #e0f7e9, #c8eac4);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .menu-panel h2 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .menu-panel label {
+            font-weight: bold;
+        }
+
+        .menu-panel select {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        .quantity-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .quantity-controls button {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .quantity-display {
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .price-display {
+            font-weight: bold;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <!-- Background Video -->
@@ -13,35 +68,35 @@
         <source src="Untitled design.mp4" type="video/mp4">
     </video>
 
-    <div class="dropdown-container">
-        <div class="dropdown-panel">
-            <label for="menu-dropdown">Choose an item:</label>
-            <select id="menu-dropdown" name="menu-dropdown" onchange="updateDetails()">
-                <option value="Pani Puri">Pani Puri</option>
-                <option value="Dahi Puri">Dahi Puri</option>
-                <option value="Bajji Mixture">Bajji Mixture</option>
-                <option value="Batani Chaat">Batani Chaat</option>
-                <option value="Fried Chicken">Fried Chicken</option>
-                <option value="French Fries">French Fries</option>
-            </select>
-            <div id="menu-details">
-                <h3 id="item-name">Pani Puri</h3>
-                <p id="item-price">Price: 30rs/-</p>
-                <div class="quantity">
-                    <label>Quantity:</label>
-                    <button onclick="decreaseQuantity('quantity')">-</button>
-                    <span id="quantity">1</span>
-                    <button onclick="increaseQuantity('quantity')">+</button>
-                </div>
-                <button onclick="addToCart('Pani Puri', 30, parseInt(document.getElementById('quantity').innerText))">Add to Cart</button>
-            </div>
+    <!-- Content -->
+    <div class="content">
+        <!-- Cart Icon -->
+        <div style="position: fixed; top: 20px; right: 20px;">
+            <img src="shopping-cart-icon-29078.jpg" alt="Cart" style="width: 40px; cursor: pointer;" onclick="redirectToCart()">
         </div>
-    </div>
 
-    <!-- Pop-up -->
-    <div id="popup" class="popup">
-        <p id="popup-message"></p>
-        <button onclick="closePopup()">Close</button>
+        <!-- Menu Panel -->
+        <div class="menu-panel">
+            <h2>Our Menu</h2>
+            <label for="menu-items">Select Item:</label>
+            <select id="menu-items" onchange="updatePrice()">
+                <option value="Pani Puri">Pani Puri - 30rs</option>
+                <option value="Dahi Puri">Dahi Puri - 30rs</option>
+                <option value="Bajji Mixture">Bajji Mixture - 30rs</option>
+                <option value="Batani Chaat">Batani Chaat - 30rs</option>
+                <option value="Fried Chicken">Fried Chicken - 99rs</option>
+                <option value="French Fries">French Fries - 40rs</option>
+            </select>
+
+            <div class="quantity-controls">
+                <button onclick="decreaseQuantity('item-quantity')">-</button>
+                <span id="item-quantity" class="quantity-display">1</span>
+                <button onclick="increaseQuantity('item-quantity')">+</button>
+            </div>
+
+            <div id="price" class="price-display">Price: 30rs</div>
+            <button onclick="addItemToCart()">Add to Cart</button>
+        </div>
     </div>
 </body>
 </html>
