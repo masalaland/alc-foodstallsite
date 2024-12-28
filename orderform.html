@@ -2,32 +2,29 @@
 <html>
 <head>
     <title>Order Form</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            text-align: center; /* Center the content */
-        }
-        /* Optional: Add some basic styling for the container */
-        .form-container {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 640px; /* Adjust width as needed */
-            margin: 0 auto; /* Center the container horizontally */
-        }
-    </style>
 </head>
 <body>
 
-    <h2>Order Form</h2>
+    <form action="https://formcarry.com/s/LbSRGhv-KFr" method="POST"> 
+        <h2>Order Form</h2>
+        <label for="rollNumber">Roll Number:</label>
+        <input type="text" id="rollNumber" name="rollNumber" required><br><br>
 
-    <div class="form-container"> 
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSex5r5g3CUH8arsn1qgEddwrou4swfB8x8Ugb6Kkxz4EQdDPw/viewform?embedded=true" 
-                width="640" height="881" frameborder="0" marginheight="0" marginwidth="0">
-            Loading…
-        </iframe>
-    </div>
+        <label for="item">Select Item:</label>
+        <select id="item" name="item">
+            <option value="Pani Puri">Pani Puri - ₹30</option>
+            <option value="Dahi Puri">Dahi Puri - ₹30</option>
+            <option value="Batani Chaat">Batani Chaat - ₹30</option>
+            <option value="Bajji Mixture">Bajji Mixture - ₹30</option>
+            <option value="Fried Chicken">Fried Chicken - ₹99</option>
+            <option value="French Fries">French Fries - ₹40</option>
+        </select><br><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" required><br><br>
+
+        <input type="submit" value="Submit Order">
+    </form>
 
 </body>
 </html>
