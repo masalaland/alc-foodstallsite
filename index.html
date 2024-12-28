@@ -31,7 +31,7 @@
         }
 
         .logo-placeholder {
-            width: 75px;
+            width: 100px;
             height: 60px;
             margin-bottom: 10px; 
              background-image: url("INDIAN FOOD.jpg"); 
@@ -135,14 +135,17 @@
             }
         }
 
-        @media (max-width: 500px) {
-            form {
-                padding: 5%;
-            }
-                        input[class="form-input"] {
+     @media (orientation: portrait) {
+    form {
+        /* Adjust styles specifically for portrait mode here */
+        padding: 5%; /* Example: Increase padding */
+        width: 95%; /* Example: Make the form slightly wider */
+        max-width: 400px; /* Example: Reduce the maximum width */
+    }
+    input[class="form-input"] {
               width: calc(100% - 30px);
             }
-        }
+}
     </style>
 </head>
 <body>
