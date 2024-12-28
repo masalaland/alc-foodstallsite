@@ -68,11 +68,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-   
-
-    const cart = []; 
-
-   
+ 
 
     window.updatePrice = function () {
         const dropdown = document.getElementById('menu-items');
@@ -87,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             priceDisplay.innerText = `Price: ${price * quantity}rs`; 
 
+            // Update hidden input fields
             document.getElementById('item_name').value = selectedItem;
             quantityHiddenInput.value = quantity; 
         } else {
