@@ -1,206 +1,67 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Menu - Masala Land</title>
-
-    <link rel="stylesheet" href="styles.css">
-
-    <script src="script.js" defer></script>
-
-    <style>
-
-        /* Panel Styling */
-
-        .menu-panel {
-
-            width: 400px;
-
-            margin: 50px auto;
-
-            background: linear-gradient(to bottom, #e0f7e9, #c8eac4);
-
-            padding: 20px;
-
-            border-radius: 10px;
-
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-
-            text-align: center;
-
-        }
-
-
-
-        .menu-panel h2 {
-
-            font-weight: bold;
-
-            margin-bottom: 20px;
-
-        }
-
-
-
-        .menu-panel label {
-
-            font-weight: bold;
-
-        }
-
-
-
-        .menu-panel select {
-
-            padding: 10px;
-
-            margin-bottom: 20px;
-
-            border-radius: 5px;
-
-            border: 1px solid #ccc;
-
-            width: 100%;
-
-        }
-
-
-
-        .quantity-controls {
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            margin-bottom: 10px;
-
-        }
-
-
-
-        .quantity-controls button {
-
-            width: 40px;
-
-            height: 40px;
-
-            font-size: 18px;
-
-            font-weight: bold;
-
-        }
-
-
-
-        .quantity-display {
-
-            font-weight: bold;
-
-            font-size: 18px;
-
-            margin: 0 10px;
-
-        }
-
-
-
-        .price-display {
-
-            font-weight: bold;
-
-            font-size: 20px;
-
-            margin: 10px 0;
-
-        }
-
-    </style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Masala Land</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* Panel Styling */
+        .menu-panel {
+            width: 400px;
+            margin: 50px auto;
+            background: linear-gradient(to bottom, #e0f7e9, #c8eac4);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* ... rest of your CSS styles ... */
+    </style>
 </head>
-
 <body>
 
-    <!-- Background Video -->
+    <video autoplay muted loop class="video-background">
+        <source src="Untitled design.mp4" type="video/mp4">
+    </video>
 
-    <video autoplay muted loop class="video-background">
+    <div class="content">
+        <div style="position: fixed; top: 20px; right: 20px;">
+            <img src="shopping-cart-icon-29078.jpg" alt="Cart" style="width: 40px; cursor: pointer;" onclick="redirectToCart()">
+        </div>
 
-        <source src="Untitled design.mp4" type="video/mp4">
+        <div class="menu-panel">
+            <h2>Our Menu</h2>
 
-    </video>
-
-
-
-    <!-- Content -->
-
-    <div class="content">
-
-        <!-- Cart Icon -->
-
-        <div style="position: fixed; top: 20px; right: 20px;">
-
-            <img src="shopping-cart-icon-29078.jpg" alt="Cart" style="width: 40px; cursor: pointer;" onclick="redirectToCart()">
-
-        </div>
-
-
-
-        <!-- Menu Panel -->
-
-        <div class="menu-panel">
-
-            <h2>Our Menu</h2>
             <form action="https://formcarry.com/s/LbSRGhv-KFr" method="POST"> 
-            <label for="menu-items">Select Item:</label>
+                <label for="menu-items">Select Item:</label>
+                <select id="menu-items" name="item" onchange="updatePrice()">
+                    <option value="Pani Puri" selected>Pani Puri - 30rs</option> 
+                    <option value="Dahi Puri">Dahi Puri - 30rs</option>
+                    <option value="Bajji Mixture">Bajji Mixture - 30rs</option>
+                    <option value="Batani Chaat">Batani Chaat - 30rs</option>
+                    <option value="Fried Chicken">Fried Chicken - 99rs</option>
+                    <option value="French Fries">French Fries - 40rs</option>
+                </select>
 
-            <select id="menu-items" onchange="updatePrice()">
+                <div class="quantity-controls">
+                    <button onclick="decreaseQuantity('item-quantity')">-</button>
+                    <span id="item-quantity" class="quantity-display">1</span>
+                    <button onclick="increaseQuantity('item-quantity')">+</button>
+                </div>
 
-                <option value="Pani Puri">Pani Puri - 30rs</option>
+                <div id="price" class="price-display"></div> 
 
-                <option value="Dahi Puri">Dahi Puri - 30rs</option>
+                <input type="hidden" name="item_name" id="item_name"> 
+                <input type="hidden" name="quantity" id="item_quantity_hidden"> 
 
-                <option value="Bajji Mixture">Bajji Mixture - 30rs</option>
+                <input type="submit" value="Add to Cart"> 
+            </form> 
+        </div>
+    </div>
 
-                <option value="Batani Chaat">Batani Chaat - 30rs</option>
-
-                <option value="Fried Chicken">Fried Chicken - 99rs</option>
-
-                <option value="French Fries">French Fries - 40rs</option>
-
-            </select>
-
-
-
-            <div class="quantity-controls">
-
-                <button onclick="decreaseQuantity('item-quantity')">-</button>
-
-                <span id="item-quantity" class="quantity-display">1</span>
-
-                <button onclick="increaseQuantity('item-quantity')">+</button>
-
-            </div>
-
-
-
-           <div id="price" class="price-display"></div> 
-
-<input type="hidden" name="item_name" id="item_name"> 
-<input type="hidden" name="quantity" id="item_quantity_hidden">
-
-            <button onclick="addItemToCart()">Add to Cart</button>
-            </form>
-        </div>
-
-    </div>
-
+    <script src="script.js" defer></script> 
 </body>
-
 </html>
