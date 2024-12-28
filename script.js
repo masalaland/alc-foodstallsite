@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Login Functionality
     const loginForm = document.getElementById('loginForm');
 
     if (loginForm) {
@@ -14,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (rollNumber) {
                 alert(`Welcome, Roll Number: ${rollNumber}`);
-                window.location.href = "menu.html"; // Redirect to home.html
+                console.log('Redirecting to menu.html');
+                window.location.href = "menu.html"; // Redirect to menu.html
             } else {
                 alert('Please enter a valid roll number.');
             }
@@ -22,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error('Login form not found in the DOM.');
     }
-});
- // Menu Page Functionality
+
+    // Menu Page Functionality
     const menuItems = {
         "Pani Puri": 30,
         "Dahi Puri": 30,
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedItem = dropdown.value;
             const price = menuItems[selectedItem];
             const quantity = parseInt(quantityDisplay.innerText);
-            priceDisplay.innerText = Price: ${price * quantity}rs;
+            priceDisplay.innerText = `Price: ${price * quantity}rs`;
         };
 
         // Increase quantity and update price
@@ -93,12 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             cartItems.innerHTML = cart
                 .map(
-                    (cartItem, index) => 
+                    (cartItem, index) => `
                         <div class="cart-item">
                             <span>${cartItem.item} - Rs. ${cartItem.price}</span>
                             <button onclick="removeFromCart(${index})">Remove</button>
                         </div>
-                    
+                    `
                 )
                 .join('');
         }
