@@ -24,8 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error('Login form not found in the DOM.');
     }
+document.addEventListener('DOMContentLoaded', () => {
+    // Define cart array
+    const cart = [];
 
-    // Menu Page Functionality
+    // Redirect to cart page
+    window.redirectToCart = function () {
+        console.log("Redirecting to cart.html");
+        window.location.href = "cart.html"; // Update with your actual cart page path
+    };
+
+    // Menu Items and Pricing
     const menuItems = {
         "Pani Puri": 30,
         "Dahi Puri": 30,
@@ -35,76 +44,64 @@ document.addEventListener('DOMContentLoaded', () => {
         "French Fries": 40,
     };
 
-    const dropdown = document.getElementById('menu-items');
-    const priceDisplay = document.getElementById('price');
-    const quantityDisplay = document.getElementById('item-quantity');
+    // Update price display based on selected menu item and quantity
+    window.updatePrice = function () {
+        const dropdown = document.getElementById('menu-items');
+        const priceDisplay = document.getElementById('price');
+        const quantityDisplay = document.getElementById('item-quantity');
 
-    if (dropdown && priceDisplay && quantityDisplay) {
-        // Update price based on selected item
-        window.updatePrice = function () {
+        if (dropdown && priceDisplay && quantityDisplay) {
             const selectedItem = dropdown.value;
             const price = menuItems[selectedItem];
-            const quantity = parseInt(quantityDisplay.innerText);
+            const quantity = parseInt(quantityDisplay.innerText, 10);
             priceDisplay.innerText = `Price: ${price * quantity}rs`;
-        };
+        }
+    };
 
-        // Increase quantity and update price
-        window.increaseQuantity = function (id) {
-            const quantityElement = document.getElementById(id);
-            let quantity = parseInt(quantityElement.innerText);
-            quantityElement.innerText = quantity + 1;
+    // Increase quantity
+    window.increaseQuantity = function (id) {
+        const quantityElement = document.getElementById(id);
+        let quantity = parseInt(quantityElement.innerText, 10);
+        quantityElement.innerText = quantity + 1;
+        updatePrice();
+    };
+
+    // Decrease quantity
+    window.decreaseQuantity = function (id) {
+        const quantityElement = document.getElementById(id);
+        let quantity = parseInt(quantityElement.innerText, 10);
+        if (quantity > 1) {
+            quantityElement.innerText = quantity - 1;
             updatePrice();
-        };
+        }
+    };
 
-        // Decrease quantity and update price
-        window.decreaseQuantity = function (id) {
-            const quantityElement = document.getElementById(id);
-            let quantity = parseInt(quantityElement.innerText);
-            if (quantity > 1) {
-                quantityElement.innerText = quantity - 1;
-                updatePrice();
-            }
-        };
+    // Add selected item to the cart
+    window.addItemToCart = function () {
+        const dropdown = document.getElementById('menu-items');
+        const quantityDisplay = document.getElementById('item-quantity');
 
-        // Add item to cart
-        window.addItemToCart = function () {
+        if (dropdown && quantityDisplay) {
             const selectedItem = dropdown.value;
             const price = menuItems[selectedItem];
-            const quantity = parseInt(quantityDisplay.innerText);
+            const quantity = parseInt(quantityDisplay.innerText, 10);
 
             for (let i = 0; i < quantity; i++) {
-                addToCart(selectedItem, price);
+                cart.push({ item: selectedItem, price });
             }
-        };
-    }
 
-    // Cart Functionality
-    const cart = [];
-
-    function addToCart(item, price) {
-        cart.push({ item, price });
-        updateCart();
-    }
-
-    function updateCart() {
-        const cartItems = document.getElementById('cart-items');
-        if (cartItems) {
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p>Your cart is empty.</p>';
-                return;
-            }
-            cartItems.innerHTML = cart
-                .map(
-                    (cartItem, index) => `
-                        <div class="cart-item">
-                            <span>${cartItem.item} - Rs. ${cartItem.price}</span>
-                            <button onclick="removeFromCart(${index})">Remove</button>
-                        </div>
-                    `
-                )
-                .join('');
+            console.log(`Added ${quantity} x ${selectedItem} to the cart.`);
+            alert(`${quantity} x ${selectedItem} added to the cart!`);
+        } else {
+            console.error("Menu items dropdown or quantity display not found.");
         }
-    }
+    };
+
+    // Example of viewing the cart (this can be implemented in the cart page)
+    window.updateCart = function () {
+        console.log("Cart Contents:", cart);
+    };
+});
 
     function removeFromCart(index) {
         cart.splice(index, 1);
