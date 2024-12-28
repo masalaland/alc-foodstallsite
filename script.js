@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     // Login Functionality
     const loginForm = document.querySelector('form'); // Select the form element
 
@@ -36,7 +36,7 @@ function isValidRollNumber(rollNumber) {
     // Example: Check if it's not empty and contains only alphanumeric characters
     return rollNumber !== "" && /^[a-zA-Z0-9]+$/.test(rollNumber);
 }
-
+*/
     const qrCodeImg = document.getElementById('qr-code-img');
     if (qrCodeImg) {
         qrCodeImg.src = 'path/to/your/qr-code.png'; // Replace with actual QR code path
