@@ -25,16 +25,24 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Login form not found in the DOM.');
     }
 document.addEventListener('DOMContentLoaded', () => {
-    // Define cart array
+    // Define cart array as a global variable
     const cart = [];
 
-    // Redirect to cart page
+    /**
+     * Redirect to cart page
+     */
     window.redirectToCart = function () {
+        if (cart.length === 0) {
+            alert("Your cart is empty. Add items before proceeding.");
+            return;
+        }
         console.log("Redirecting to cart.html");
-        window.location.href = "cart.html"; // Update with your actual cart page path
+        window.location.href = "cart.html"; // Update with the correct cart page path
     };
 
-    // Menu Items and Pricing
+    /**
+     * Menu Items and Pricing
+     */
     const menuItems = {
         "Pani Puri": 30,
         "Dahi Puri": 30,
@@ -44,7 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
         "French Fries": 40,
     };
 
-    // Update price display based on selected menu item and quantity
+    /**
+     * Update price display based on selected menu item and quantity
+     */
     window.updatePrice = function () {
         const dropdown = document.getElementById('menu-items');
         const priceDisplay = document.getElementById('price');
@@ -58,7 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Increase quantity
+    /**
+     * Increase quantity
+     */
     window.increaseQuantity = function (id) {
         const quantityElement = document.getElementById(id);
         let quantity = parseInt(quantityElement.innerText, 10);
@@ -66,7 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePrice();
     };
 
-    // Decrease quantity
+    /**
+     * Decrease quantity
+     */
     window.decreaseQuantity = function (id) {
         const quantityElement = document.getElementById(id);
         let quantity = parseInt(quantityElement.innerText, 10);
@@ -76,7 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Add selected item to the cart
+    /**
+     * Add selected item to the cart
+     */
     window.addItemToCart = function () {
         const dropdown = document.getElementById('menu-items');
         const quantityDisplay = document.getElementById('item-quantity');
@@ -97,21 +113,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Example of viewing the cart (this can be implemented in the cart page)
-    window.updateCart = function () {
-        console.log("Cart Contents:", cart);
+    /**
+     * Save cart to local storage for persistence
+     */
+    window.saveCart = function () {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    };
+
+    /**
+     * Update cart display (For the cart page)
+     */
+    window.updateCartDisplay = function () {
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartContainer = document.getElementById('cart-items');
+        if (!cartContainer) {
+            console.error("Cart container not found.");
+            return;
+        }
+
+        if (cartItems.length === 0) {
+            cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+            return;
+        }
+
+        cartContainer.innerHTML = cartItems
+            .map(
+                (cartItem, index) => `
+                <div class="cart-item">
+                    <span>${cartItem.item} - Rs. ${cartItem.price}</span>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                </div>
+            `
+            )
+            .join('');
+    };
+
+    /**
+     * Remove item from cart
+     */
+    window.removeFromCart = function (index) {
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        cartItems.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        updateCartDisplay();
+    };
+
+    /**
+     * Checkout functionality
+     */
+    window.checkout = function () {
+        alert('Proceeding to checkout!');
+        localStorage.removeItem('cart'); // Clear the cart after checkout
+        window.location.href = "checkout.html"; // Redirect to checkout page
     };
 });
 
-    function removeFromCart(index) {
-        cart.splice(index, 1);
-        updateCart();
-    }
-
-    function checkout() {
-        alert('Proceeding to checkout!');
-        // Additional checkout logic here
-    }
 
     // QR Code Handling
     const qrCodeImg = document.getElementById('qr-code-img');
