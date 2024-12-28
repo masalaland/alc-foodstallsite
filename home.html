@@ -1,13 +1,153 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masala Land - Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #ffe0b2, #ffb74d);
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(to right, #ff9800, #fb8c00);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #logo-container {
+            margin-bottom: 5px;
+            width: 100px;
+            height: 50;
+        }
+
+        #logo-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 10px 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #hero {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 90%;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom right, #e0f2f7, #bbdefb);
+            color: #212121;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #1a237e;
+            margin-bottom: 0.5em;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+             color: #a0522d; 
+        }
+
+        #video-container {
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 40px;
+            aspect-ratio: 16/9;
+            background-color: #000;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        #video-container video {
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (min-width: 769px) {
+            #hero {
+                max-width: 60%;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
+        <div id="logo-container">
+            <img src="INDIAN FOOD.jpg" alt="Masala Land Logo">
+        </div>
         <h1>Masala Land</h1>
         <nav>
             <ul>
@@ -20,9 +160,16 @@
     </header>
     <main>
         <section id="hero">
-            <h2>"Delicious Street Food, Now on Your Campus!"</h2>
-            <p>Explore the taste of India with every bite. Freshly made, just for you.</p>
+            <h2>"Bringing Tech to Taste"</h2>
+            <p>"Discover your😍favorite snacks on campus! Delicious😋 and affordable options await you at our stall."</p>
         </section>
+
+        <div id="video-container">
+            <video controls>
+                <source src="Untitled design.mp4" type="video/mp4">
+                
+            </video>
+        </div>
     </main>
     <footer>
         <p>&copy; 2024 Masala Land. All rights reserved.</p>
