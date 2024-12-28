@@ -168,6 +168,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 });
 
+/**
+ * Update price display based on selected menu item and quantity
+ */
+window.updatePrice = function () {
+    const dropdown = document.getElementById('menu-items'); // Dropdown for menu items
+    const priceDisplay = document.getElementById('price');  // Price display element
+    const quantityDisplay = document.getElementById('item-quantity'); // Quantity display element
+
+    if (dropdown && priceDisplay && quantityDisplay) {
+        const selectedItem = dropdown.value; // Get selected item name
+        const price = menuItems[selectedItem]; // Retrieve price from menuItems
+        const quantity = parseInt(quantityDisplay.innerText, 10); // Get current quantity
+        priceDisplay.innerText = `Price: ${price * quantity}rs`; // Update price display
+    } else {
+        console.error("Dropdown, price display, or quantity display not found.");
+    }
+};
 
     // QR Code Handling
     const qrCodeImg = document.getElementById('qr-code-img');
