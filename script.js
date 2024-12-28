@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (rollNumber) {
                 alert(`Welcome, Roll Number: ${rollNumber}`);
-                console.log('Redirecting to home.html');
-                window.location.href = "home.html"; // Redirect to menu.html
+                console.log('Redirecting to orderform.html');
+                window.location.href = "orderform.html"; // Redirect to menu.html
             } else {
                 alert('Please enter a valid roll number.');
             }
