@@ -1,60 +1,132 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - Masala Land</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Masala Land</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto+Slab:wght@400;700&display=swap">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url("Online Order.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: #333; /* Dark gray text */
+        }
+
+        .contact-container {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h2 {
+            font-family: 'Roboto Slab', serif;
+            color: #d35400; /* Orange heading */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input,
+        textarea {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        input:focus,
+        textarea:focus{
+            border-color: #d35400;
+        }
+
+        button {
+            background-color: #d35400; /* Orange button */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #e67e22; /* Darker orange on hover */
+        }
+    </style>
 </head>
 <body>
-  <h2>Contact Us</h2>
-  <form id="contactForm">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
 
-    <label for="message">Message:</label>
-    <textarea id="message" name="message" required></textarea>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
 
-    <button type="submit">Submit</button>
-  </form>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
-  <script>
-    $(document).ready(function() {
-      $("#contactForm").submit(function(event) {
-        event.preventDefault(); // Prevent default form submission
+    <script>
+        $(document).ready(function() {
+          $("#contactForm").submit(function(event) {
+            event.preventDefault();
 
-        const name = $("#name").val();
-        const email = $("#email").val();
-        const message = $("#message").val();
+            const name = $("#name").val();
+            const email = $("#email").val();
+            const message = $("#message").val();
 
-        const formData = { // Create an object with form data
-          name: name,
-          email: email,
-          message: message,
-        };
+            const formData = {
+              name: name,
+              email: email,
+              message: message,
+            };
 
-        $.ajax({
-          url: "https://formcarry.com/s/YX4C7qcJPRv", // Replace with your Formcarry form ID
-          method: "POST",
-          data: formData,
-          dataType: "json", // Set expected response type
-          success: function(response) {
-            // Handle successful submission
-            console.log(response); // Log the response for debugging
-            alert("Thank you for your message! We will get back to you soon.");
-            $("#contactForm").trigger("reset"); // Clear the form after successful submission
-          },
-          error: function(error) {
-            // Handle submission errors
-            console.error(error); // Log the error for debugging
-            alert("There was an error submitting your message. Please try again later.");
-          },
+            $.ajax({
+              url: "https://formcarry.com/s/YX4C7qcJPRv",
+              method: "POST",
+              data: formData,
+              dataType: "json",
+              success: function(response) {
+                console.log(response);
+                alert("Thank you for your message! We will get back to you soon.");
+                $("#contactForm").trigger("reset");
+              },
+              error: function(error) {
+                console.error(error);
+                alert("There was an error submitting your message. Please try again later.");
+              },
+            });
+          });
         });
-      });
-    });
-  </script>
+      </script>
 </body>
 </html>
