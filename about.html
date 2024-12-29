@@ -10,11 +10,17 @@
             height: 400px; /* Adjust height as needed */
             border: 2px solid #ccc;
             overflow: hidden;
+            position: relative; /* For centering */
         }
 
         .portrait-frame img {
-            width: 100%; 
-            height: auto; 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the image */
+            max-width: 100%; /* Ensure image doesn't exceed frame width */
+            max-height: 100%; /* Ensure image doesn't exceed frame height */
+            object-fit: contain; /* Scale image to fit within frame while maintaining aspect ratio */
         }
     </style>
 </head>
