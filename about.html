@@ -5,24 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Masala Land</title>
     <style>
-        .portrait-frame {
-            width: 100%; /* Make the frame responsive */
-            max-width: 300px; /* Set a maximum width for the frame */
-            height: auto; /* Maintain aspect ratio */
+        .container {
+            width: 100%; 
+            max-width: 300px; /* Adjust max-width as needed */
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 20px; /* Add some padding for spacing */
             border: 2px solid #ccc;
+            background-color: #fff; /* Optional: Add a background color for better contrast */
+        }
+
+        .portrait-frame {
+            width: 100%;
+            height: auto; 
             overflow: hidden;
         }
 
         .portrait-frame img {
-            width: 100%; 
-            height: auto; 
+            width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
 
-    <div class="portrait-frame">
-        <img src="aboutb.png" alt="About Us Image">
+    <div class="container"> 
+        <div class="portrait-frame">
+            <img src="aboutb.png" alt="About Us Image">
+        </div>
     </div>
 
 </body>
