@@ -1,87 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu - Masala Land</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
-  <style>
-    /* Panel Styling */
-    .menu-panel {
-      width: 300px; /* Adjust width for portrait frame */
-      margin: 30px auto; /* Adjust margins for portrait frame */
-      background: linear-gradient(to bottom, #bfffff, #87ceeb); /* Vibrant sky blue gradient */
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Masala Land</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* Panel Styling */
+        .menu-panel {
+            width: 300px; /* Adjust width for portrait frame */
+            margin: 30px auto; /* Adjust margins for portrait frame */
+            background: linear-gradient(to bottom, #bfffff, #87ceeb); /* Vibrant sky blue gradient */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
 
-    /* Text Styling */
-    .menu-panel h2,
-    .menu-panel label,
-    .menu-panel select,
-    .menu-panel input[type="number"],
-    .menu-panel .price-display,
-    .menu-panel input[type="submit"] {
-      font-size: 1.2em; /* Larger font size for all elements */
-      font-weight: bold; /* Bold text */
-      color: linear-gradient(to right, #000, #222); /* Gradient dark blue text */
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Text shadow */
-    }
+        /* Text Styling */
+        .menu-panel h2,
+        .menu-panel label,
+        .menu-panel select,
+        .menu-panel input[type="number"],
+        .menu-panel .price-display,
+        .menu-panel input[type="submit"] {
+            font-size: 1.2em; /* Larger font size for all elements */
+            font-weight: bold; /* Bold text */
+            color: linear-gradient(to right, #000, #222); /* Gradient dark blue text */
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Text shadow */
+        }
 
-    /* Submit Button Styling (Override gradient dark blue) */
-    .menu-panel input[type="submit"] {
-      color: linear-gradient(to right, black, #222); /* Gradient black text */
-    }
-  </style>
+        /* Submit Button Styling (Override gradient dark blue) */
+        .menu-panel input[type="submit"] {
+            color: linear-gradient(to right, black, #222); /* Gradient black text */
+        }
+    </style>
 </head>
 <body>
 
-  <video autoplay muted loop class="video-background">
-    <source src="Untitled design.mp4" type="video/mp4">
-  </video>
+    <video autoplay muted loop class="video-background">
+        <source src="Untitled design.mp4" type="video/mp4">
+    </video>
 
-  <div class="content">
-    <div style="position: fixed; top: 20px; right: 20px;">
-      <img src="shopping-cart-icon-29078.jpg" alt="Cart" style="width: 40px; cursor: pointer;" onclick="redirectToCart()">
-    </div>
-
-    <div class="menu-panel">
-      <h2>Our Menu</h2>
-
-      <form action="payment.html" method="POST"> 
-        <label for="customer-name">Customer Name:</label>
-        <input type="text" id="customer-name" name="name" required>
-
-        <label for="phone-number">Phone Number:</label>
-        <input type="tel" id="phone-number" name="phone" required>
-
-        <label for="menu-items">Select Item:</label>
-        <select id="menu-items" name="item" onchange="updatePrice()" required>
-          <option value="Pani Puri" selected>Pani Puri - 30rs</option>
-          <option value="Dahi Puri">Dahi Puri - 30rs</option>
-          <option value="Bajji Mixture">Bajji Mixture - 30rs</option>
-          <option value="Batani Chaat">Batani Chaat - 30rs</option>
-          <option value="Fried Chicken">Fried Chicken - 99rs</option>
-          <option value="French Fries">French Fries - 40rs</option>
-        </select>
-
-        <div class="quantity-controls">
-          <label for="item-quantity">Quantity:</label>
-          <input type="number" id="item-quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
+    <div class="content">
+        <div style="position: fixed; top: 20px; right: 20px;">
+            <img src="shopping-cart-icon-29078.jpg" alt="Cart" style="width: 40px; cursor: pointer;" onclick="redirectToCart()">
         </div>
 
-        <div id="price" class="price-display"></div>
+        <div class="menu-panel">
+            <h2>Our Menu</h2>
 
-        <input type="hidden" name="item_name" id="item_name">
+            <form id="initialForm" action="https://formcarry.com/s/LbSRGhv-KFr" method="POST">
+                <label for="customer-name">Customer Name:</label>
+                <input type="text" id="customer-name" name="name" required>
 
-        <input type="submit" value="Submit Order">
-      </form>
+                <label for="phone-number">Phone Number:</label>
+                <input type="tel" id="phone-number" name="phone" required>
+
+                <label for="menu-items">Select Item:</label>
+                <select id="menu-items" name="item" onchange="updatePrice()" required>
+                    <option value="Pani Puri" selected>Pani Puri - 30rs</option>
+                    <option value="Dahi Puri">Dahi Puri - 30rs</option>
+                    <option value="Bajji Mixture">Bajji Mixture - 30rs</option>
+                    <option value="Batani Chaat">Batani Chaat - 30rs</option>
+                    <option value="Fried Chicken">Fried Chicken - 99rs</option>
+                    <option value="French Fries">French Fries - 40rs</option>
+                </select>
+
+                <div class="quantity-controls">
+                    <label for="item-quantity">Quantity:</label>
+                    <input type="number" id="item-quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
+                </div>
+
+                <div id="price" class="price-display"></div>
+
+                <input type="hidden" name="item_name" id="item_name">
+
+                <input type="submit" value="Submit Order" id="submitInitialForm">
+            </form>
+        </div>
     </div>
-  </div>
 
-  <script src="script.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
