@@ -35,19 +35,33 @@
         .menu-panel input[type="submit"] {
             color: linear-gradient(to right, black, #222); /* Gradient black text */
         }
+
+        /* Cart Icon Styling */
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px; /* Adjust size for cart icon */
+            cursor: pointer;
+            z-index: 1000; /* Ensure it's above other content */
+        }
     </style>
 </head>
 <body>
 
+    <!-- Background Video -->
     <video autoplay muted loop class="video-background">
         <source src="Untitled design.mp4" type="video/mp4">
     </video>
 
-    <div class="content">
-        <div style="position: fixed; top: 20px; right: 20px;">
-            <img src="shopping-cart-icon-29078.jpg" alt="Cart" style="width: 40px; cursor: pointer;" onclick="redirectToCart()">
-        </div>
+    <!-- Cart Icon -->
+    <img 
+        src="shopping-cart-icon-29078.jpg" 
+        alt="Cart Icon" 
+        class="cart-icon" 
+        onclick="redirectToPayment()">
 
+    <div class="content">
         <div class="menu-panel">
             <h2>Our Menu</h2>
 
@@ -82,6 +96,37 @@
         </div>
     </div>
 
-    <script src="script.js" defer></script>
+    <script>
+        // Redirect to Payment Page
+        function redirectToPayment() {
+            window.location.href = "payment.html";
+        }
+
+        // Update Price Functionality
+        function updatePrice() {
+            const menuItems = document.getElementById("menu-items");
+            const itemQuantity = document.getElementById("item-quantity").value;
+            const priceDisplay = document.getElementById("price");
+
+            const prices = {
+                "Pani Puri": 30,
+                "Dahi Puri": 30,
+                "Bajji Mixture": 30,
+                "Batani Chaat": 30,
+                "Fried Chicken": 99,
+                "French Fries": 40
+            };
+
+            const selectedItem = menuItems.value;
+            const totalPrice = prices[selectedItem] * itemQuantity;
+
+            priceDisplay.innerHTML = `Total Price: Rs. ${totalPrice}`;
+        }
+
+        // Initial Price Display
+        document.addEventListener("DOMContentLoaded", () => {
+            updatePrice();
+        });
+    </script>
 </body>
 </html>
