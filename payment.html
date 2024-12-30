@@ -69,6 +69,11 @@
             margin-top: 20px;
         }
 
+        #timer {
+            font-size: 2rem;
+            margin-top: 10px;
+        }
+
         #payeeName {
             width: 100%;
             padding: 10px;
@@ -133,59 +138,52 @@
         <div id="timerContainer">
             <div id="timer"></div> 
         </div>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/seven-segment-display/dist/seven-segment-display.min.js"></script> 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const timerDisplay = document.getElementById('timer');
-        let secondsRemaining = 300; // 5 minutes in seconds
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const timerContainer = document.getElementById('timer');
+            let secondsRemaining = 300; // 5 minutes in seconds
 
-        // Initialize the Seven Segment Display
-        const options = {
-            digitCount: 5, // Format: MM:SS (5 characters including colon)
-            colorOn: '#f093fb', // Active segment color
-            colorOff: '#333', // Inactive segment color
-            backColor: 'transparent', // Background color
-            segmentCount: 7 // Use 7-segment style
-        };
-        const sevenSeg = new SevenSegmentDisplay(timerDisplay, options);
+            // Initialize the Seven-Segment Display
+            const sevenSeg = new SevenSegmentDisplay(timerContainer, {
+                digitCount: 5, // Format: MM:SS
+                useGradient: true,
+                colorOn: '#f093fb',
+                colorOff: '#333',
+                backColor: 'transparent',
+            });
 
-        // Countdown Logic
-        const countdown = setInterval(() => {
-            const minutes = Math.floor(secondsRemaining / 60);
-            const seconds = secondsRemaining % 60;
+            // Countdown Logic
+            const countdown = setInterval(() => {
+                const minutes = Math.floor(secondsRemaining / 60);
+                const seconds = secondsRemaining % 60;
 
-            // Format the timer as MM:SS
-            const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            
-            // Update the Seven Segment Display
-            sevenSeg.setValue(timeString);
+                const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                sevenSeg.setValue(timeString);
 
-            if (secondsRemaining === 0) {
-                clearInterval(countdown);
-                alert("Payment timed out.");
-            }
+                if (secondsRemaining === 0) {
+                    clearInterval(countdown);
+                    alert("Payment timed out.");
+                }
 
-            secondsRemaining--;
-        }, 1000);
+                secondsRemaining--;
+            }, 1000);
 
-        // Confirm Button Logic
-        const termsCheckbox = document.getElementById('termsCheckbox');
-        const confirmOrderButton = document.getElementById('confirmOrder');
+            // Confirm Button Logic
+            const termsCheckbox = document.getElementById('termsCheckbox');
+            const confirmOrderButton = document.getElementById('confirmOrder');
 
-        termsCheckbox.addEventListener('change', () => {
-            confirmOrderButton.disabled = !termsCheckbox.checked;
+            termsCheckbox.addEventListener('change', () => {
+                confirmOrderButton.disabled = !termsCheckbox.checked;
+            });
+
+            // Terms and Conditions Click Event
+            document.getElementById('termsAndConditions').addEventListener('click', () => {
+                alert("Terms and Conditions:\nThe amount paid for the order will be refunded if the user cancels the order within 5 minutes.");
+            });
         });
-
-        // Terms and Conditions Click Event
-        document.getElementById('termsAndConditions').addEventListener('click', () => {
-            alert("Terms and Conditions:\nThe amount paid for the order will be refunded if the user makes the cancellation of the order within 5 minutes.");
-        });
-    });
-</script>
-
-
+    </script>
 </body>
 </html>
