@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, #f093fb, #f5576c); /* Attractive gradient */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .panel {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #importantMessage {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        #upiId {
+            font-size: 1.2rem;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            display: block;
+            width: 80%; /* Adjust width as needed */
+        }
+
+        #qrCodeContainer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #qrCode {
+            width: 150px; /* Adjust size as needed */
+            margin-bottom: 10px;
+        }
+
+        #scanToPay {
+            color: #333;
+            font-weight: bold;
+        }
+
+        #timerContainer {
+            margin-top: 20px;
+        }
+
+        #payeeName {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #termsCheckbox {
+            margin-bottom: 15px;
+        }
+
+        #confirmOrder {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #confirmOrder:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        #termsAndConditions {
+            color: #007bff; /* Blue link */
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Confirmation</h1>
+        <div class="panel">
+            <p><b>Important Message:</b></p>
+            <div id="importantMessage">
+                Pay the order amount to the following UPI ID: 
+                <br>
+                <span id="upiId">8639443309@ybl</span> 
+            </div>
+
+            <div id="qrCodeContainer">
+                <img id="qrCode" src="C:\Users\johnn\Downloads\phonepe.png" alt="QR Code"> 
+                <p id="scanToPay">Scan through any UPI app to Pay</p>
+            </div>
+
+            <label for="payeeName">Enter Payee Name:</label>
+            <input type="text" id="payeeName" name="payeeName" required>
+
+            <div>
+                <input type="checkbox" id="termsCheckbox">
+                <label for="termsCheckbox">I agree to the <a href="#" id="termsAndConditions">Terms and Conditions</a></label>
+            </div>
+
+            <button id="confirmOrder" disabled>Confirm Order</button>
+        </div>
+
+        <div id="timerContainer">
+            <div id="timer"></div> 
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/seven-segment-display/dist/seven-segment-display.min.js"></script> 
+    <script>
+        const timerDisplay = document.getElementById('timer');
+        let secondsRemaining = 300; // 5 minutes in seconds
+        const termsCheckbox = document.getElementById('termsCheckbox');
+        const confirmOrderButton = document.getElementById('confirmOrder');
+
+        // Create a seven-segment display
+        const options = {
+            useGradient: true, // Use gradient for segments
+            colorOn: '#f093fb', // Match gradient color
+            colorOff: '#333',
+            backColor: 'transparent'
+        };
+        const sevenSeg = new SevenSegmentDisplay(timerDisplay, options);
+
+        const countdown = setInterval(() => {
+            const minutes = Math.floor(secondsRemaining / 60);
+            const seconds = secondsRemaining % 60;
+
+            // Update seven-segment display
+            sevenSeg.setValue(`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+
+            if (secondsRemaining === 0) {
+                clearInterval(countdown);
+                // Handle payment timeout (e.g., display a message)
+                alert("Payment timed out."); 
+            }
+
+            secondsRemaining--;
+        }, 1000);
+
+        termsCheckbox.addEventListener('change', () => {
+            confirmOrderButton.disabled = !termsCheckbox.checked;
+        });
+
+        document.getElementById('termsAndConditions').addEventListener('click', () => {
+            alert("Terms and Conditions:\nThe amount paid for the order will be refunded if the user makes the cancellation of the order within 5 minutes.");
+        });
+    </script>
+</body>
+</html>
