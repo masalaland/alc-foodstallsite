@@ -66,7 +66,7 @@
             <h2>Our Menu</h2>
 
             <!-- Updated Formcarry Link -->
-            <form id="initialForm" action="https://formcarry.com/s/U2eJG5i2YAD" method="POST">
+            <form id="menuForm" action="https://formcarry.com/s/U2eJG5i2YAD" method="POST">
                 <label for="customer-name">Customer Name:</label>
                 <input type="text" id="customer-name" name="name" required>
 
@@ -90,9 +90,10 @@
 
                 <div id="price" class="price-display"></div>
 
-                <input type="hidden" name="item_name" id="item_name">
+                <!-- Hidden field to store total price for submission -->
+                <input type="hidden" name="total_price" id="total_price">
 
-                <input type="submit" value="Submit Order" id="submitInitialForm">
+                <input type="submit" value="Submit Order">
             </form>
         </div>
     </div>
@@ -122,6 +123,9 @@
             const totalPrice = prices[selectedItem] * itemQuantity;
 
             priceDisplay.innerHTML = `Total Price: Rs. ${totalPrice}`;
+
+            // Update hidden field with total price
+            document.getElementById("total_price").value = totalPrice;
         }
 
         // Initial Price Display
