@@ -137,49 +137,40 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/seven-segment-display/dist/seven-segment-display.min.js"></script> 
-    <script>
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
         const timerDisplay = document.getElementById('timer');
         let secondsRemaining = 300; // 5 minutes in seconds
+
         const termsCheckbox = document.getElementById('termsCheckbox');
         const confirmOrderButton = document.getElementById('confirmOrder');
-        const payeeNameInput = document.getElementById('payeeName'); 
 
-        // Create a seven-segment display
-        const options = {
-            useGradient: true, // Use gradient for segments
-            colorOn: '#f093fb', // Match gradient color
-            colorOff: '#333',
-            backColor: 'transparent'
-        };
-        const sevenSeg = new SevenSegmentDisplay(timerDisplay, options);
-
+        // Countdown Timer
         const countdown = setInterval(() => {
             const minutes = Math.floor(secondsRemaining / 60);
             const seconds = secondsRemaining % 60;
 
-            // Update seven-segment display
-            sevenSeg.setValue(`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
             if (secondsRemaining === 0) {
                 clearInterval(countdown);
-                // Handle payment timeout (e.g., display a message)
-                alert("Payment timed out."); 
+                alert("Payment timed out.");
             }
 
             secondsRemaining--;
         }, 1000);
 
+        // Enable Confirm Button on Checkbox Check
         termsCheckbox.addEventListener('change', () => {
-            confirmOrderButton.disabled = !termsCheckbox.checked || !payeeNameInput.value; 
+            confirmOrderButton.disabled = !termsCheckbox.checked;
         });
 
-        payeeNameInput.addEventListener('input', () => {
-            confirmOrderButton.disabled = !termsCheckbox.checked || !payeeNameInput.value;
-        });
-
+        // Display Terms and Conditions
         document.getElementById('termsAndConditions').addEventListener('click', () => {
             alert("Terms and Conditions:\nThe amount paid for the order will be refunded if the user makes the cancellation of the order within 5 minutes.");
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
