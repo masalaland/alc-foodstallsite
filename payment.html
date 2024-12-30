@@ -47,7 +47,7 @@
             text-align: center;
             font-weight: bold;
             display: block;
-            width: 80%; /* Adjust width as needed */
+            width: 80%;
         }
 
         #qrCodeContainer {
@@ -56,7 +56,7 @@
         }
 
         #qrCode {
-            width: 150px; /* Adjust size as needed */
+            width: 150px;
             margin-bottom: 10px;
         }
 
@@ -67,11 +67,10 @@
 
         #timerContainer {
             margin-top: 20px;
-        }
-
-        #timer {
-            font-size: 2rem;
-            margin-top: 10px;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #f5576c;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         #payeeName {
@@ -136,32 +135,26 @@
         </div>
 
         <div id="timerContainer">
-            <div id="timer"></div> 
+            <span id="timer">05:00</span>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/seven-segment-display/dist/seven-segment-display.min.js"></script> 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const timerContainer = document.getElementById('timer');
-            let secondsRemaining = 300; // 5 minutes in seconds
+            const timerElement = document.getElementById('timer');
+            const termsCheckbox = document.getElementById('termsCheckbox');
+            const confirmOrderButton = document.getElementById('confirmOrder');
+            const termsAndConditions = document.getElementById('termsAndConditions');
 
-            // Initialize the Seven-Segment Display
-            const sevenSeg = new SevenSegmentDisplay(timerContainer, {
-                digitCount: 5, // Format: MM:SS
-                useGradient: true,
-                colorOn: '#f093fb',
-                colorOff: '#333',
-                backColor: 'transparent',
-            });
+            let secondsRemaining = 300; // 5 minutes in seconds
 
             // Countdown Logic
             const countdown = setInterval(() => {
                 const minutes = Math.floor(secondsRemaining / 60);
                 const seconds = secondsRemaining % 60;
 
-                const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                sevenSeg.setValue(timeString);
+                // Update the timer display
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
                 if (secondsRemaining === 0) {
                     clearInterval(countdown);
@@ -171,16 +164,13 @@
                 secondsRemaining--;
             }, 1000);
 
-            // Confirm Button Logic
-            const termsCheckbox = document.getElementById('termsCheckbox');
-            const confirmOrderButton = document.getElementById('confirmOrder');
-
+            // Enable Confirm Order Button
             termsCheckbox.addEventListener('change', () => {
                 confirmOrderButton.disabled = !termsCheckbox.checked;
             });
 
             // Terms and Conditions Click Event
-            document.getElementById('termsAndConditions').addEventListener('click', () => {
+            termsAndConditions.addEventListener('click', () => {
                 alert("Terms and Conditions:\nThe amount paid for the order will be refunded if the user cancels the order within 5 minutes.");
             });
         });
