@@ -19,20 +19,21 @@
     }
 
     /* Text Styling */
-    .menu-panel h2 {
-      font-size: 2.5em; /* Bigger font size */
-      font-weight: bold; /* Bold text */
-      color: linear-gradient(to right, black, #222); /* Gradient black text */
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Text shadow */
-    }
-
+    .menu-panel h2,
     .menu-panel label,
     .menu-panel select,
     .menu-panel input[type="number"],
     .menu-panel .price-display,
     .menu-panel input[type="submit"] {
-      font-size: 1.2em; /* Larger font size for other elements */
+      font-size: 1.2em; /* Larger font size for all elements */
       font-weight: bold; /* Bold text */
+      color: linear-gradient(to right, #000, #222); /* Gradient dark blue text */
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Text shadow */
+    }
+
+    /* Submit Button Styling (Override gradient dark blue) */
+    .menu-panel input[type="submit"] {
+      color: linear-gradient(to right, black, #222); /* Gradient black text */
     }
   </style>
 </head>
@@ -51,6 +52,12 @@
       <h2>Our Menu</h2>
 
       <form action="https://formcarry.com/s/LbSRGhv-KFr" method="POST">
+        <label for="customer-name">Customer Name:</label>
+        <input type="text" id="customer-name" name="name" required>
+
+        <label for="phone-number">Phone Number:</label>
+        <input type="tel" id="phone-number" name="phone" required>
+
         <label for="menu-items">Select Item:</label>
         <select id="menu-items" name="item" onchange="updatePrice()" required>
           <option value="Pani Puri" selected>Pani Puri - 30rs</option>
@@ -70,11 +77,11 @@
 
         <input type="hidden" name="item_name" id="item_name">
 
-        <input type="submit" value="Add to Cart">
+        <input type="submit" value="Submit Order">
       </form>
     </div>
   </div>
 
   <script src="script.js" defer></script>
 </body>
-</html>
+</html
