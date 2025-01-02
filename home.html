@@ -58,18 +58,22 @@
         }
 
         nav li {
-            margin: 10px; /* Add margin for spacing */
+            margin: 8px; /* Add spacing between items */
+        }
+
+        nav li:nth-child(5) {
+            margin-top: 15px; /* Add extra margin above Challenge button */
         }
 
         nav a {
             text-decoration: none;
             color: #fff;
-            padding: 12px 20px; /* Larger padding for bigger buttons */
-            border-radius: 8px; /* Rounded buttons */
+            padding: 12px 18px; /* Increased button size */
+            border-radius: 8px; /* Rounded corners */
             background: rgba(0, 0, 0, 0.3);
             transition: background-color 0.3s ease, transform 0.2s ease;
-            font-size: 1.1em; /* Larger font size */
-            font-weight: 600;
+            font-size: 1em; /* Larger text */
+            font-weight: 500;
         }
 
         nav a:hover {
@@ -137,16 +141,9 @@
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        @media (max-width: 768px) {
-            nav a {
-                display: block;
-                margin-bottom: 5px; /* Space between buttons on smaller screens */
-                width: calc(100% - 20px); /* Make buttons stretch across */
-                text-align: center;
-            }
-
-            nav ul {
-                flex-direction: column; /* Stack buttons vertically */
+        @media (min-width: 769px) {
+            #hero {
+                max-width: 60%;
             }
         }
     </style>
@@ -180,7 +177,4 @@
         </div>
     </main>
     <footer>
-        <p>&copy; 2024 Masala Land. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+        <p>&copy; 2024 Masala Land. All r
